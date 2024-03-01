@@ -12,7 +12,7 @@ class MyfitnessApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: screen1(),
+      home: Splash_screen(),
       title: 'Home Workout!',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
