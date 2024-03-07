@@ -1,276 +1,117 @@
-import 'package:fitnessapp/cardio_screens/cardio_b.dart';
-import 'package:fitnessapp/strength_training_screens/str_trg_b.dart';
-import 'package:fitnessapp/warmupscreen/warmup_b.dart';
+import 'package:fitnessapp/main_screens/homepage.dart';
 import 'package:flutter/material.dart';
-import '../rest_screens/rest_b.dart';
-import 'package:fitnessapp/flexibility_screens/flex_i.dart';
-class Beginners extends StatelessWidget {
+import 'global_vars.dart';
+
+
+class Beginners extends StatefulWidget {
   const Beginners({super.key});
+
+  @override
+  State<Beginners> createState() => _BeginnersState();
+}
+
+class _BeginnersState extends State<Beginners> {
+
+
 
   @override
   Widget build(BuildContext context) {
 
     return  Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        title: Text('Beginners',
-            style:  TextStyle(
-              fontSize: 28,
-              color: Colors.lightBlue,
-              backgroundColor: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
+        actions: [
+          InkWell(
+            onTap: (){
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder:
+                  (context) => screen2(),
+                  ));
+            },
+              child:
+          Icon(Icons.home),
           ),
+        ],
+        elevation: 0,
+        backgroundColor: Theme.of(context).canvasColor,
       ),
       body:Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.white54,
+        color: Theme.of(context).canvasColor,
         padding: const EdgeInsets.only(left: 20, right: 20),
         alignment: Alignment.center,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Beginners',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:10),
+              child: Text('Beginners',
                 style:
                 TextStyle(fontSize:28,
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 4),
-              Text('Novice fitness enthusiasts!',
-                style:
-                TextStyle(fontSize:18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
+            ),
+            SizedBox(height: 4),
+            Text('Novice Fitness Enthusiasts!',
+              style:
+              TextStyle(fontSize:18,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
               ),
-              SizedBox(height: 90,),
-              Column(
-                  children: [
-                    Container(
-                      height: 140,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade400,
-                        borderRadius: BorderRadius.circular(20),
+            ),
+            SizedBox(height: 90,),
+            Expanded(
+              child: ListView.builder(itemBuilder: (context,index){
+                return Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  margin: EdgeInsets.only(bottom: 15),
+                  padding: EdgeInsets.only(left: 15, bottom: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(sessions_[index],
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
-                      padding: const EdgeInsets.only(left: 15,bottom: 15),
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Warm-Up',
-                            style: Theme.of(context).textTheme.displayLarge,
+                      InkWell(
+                        child: Container(
+                          height: 36,
+                          width: 36,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            color: Colors.white,
                           ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(
-                                  context,MaterialPageRoute(
-                                builder: (context) => Warmup_b(),
-                              ));
-                            },
-                            child:  Container(
-                              height: 36,
-                              width: 36,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: Colors.white,
-                              ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(right: 10, top:80),
-                              child: Text('>',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(right: 10, top:80),
+                          child: Text('>',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      height: 140,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade400,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.only(left: 15,bottom: 15),
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Strength Training',
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(
-                                  context,MaterialPageRoute(
-                                builder: (context) => Str_trg_b(),
+                        ),
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                builder: (context) => sessions_screens_b[index],
                               ));
-                            },
-                            child:  Container(
-                              height: 36,
-                              width: 36,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: Colors.white,
-                              ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(right: 10, top:80),
-                              child: Text('>',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        },
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      height: 140,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade400,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.only(left: 15,bottom: 15),
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Cardio',
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(
-                                  context,MaterialPageRoute(
-                                builder: (context) => Cardio_b(),
-                              ));
-                            },
-                            child:  Container(
-                              height: 36,
-                              width: 36,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: Colors.white,
-                              ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(right: 10, top:80),
-                              child: Text('>',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      height: 140,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade400,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.only(left: 15,bottom: 15),
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Flexibility',
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(
-                                  context,MaterialPageRoute(
-                                builder: (context) => Flex_i(),
-                              ));
-                            },
-                            child:  Container(
-                              height: 36,
-                              width: 36,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17.5),
-                                color: Colors.white,
-                              ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(right: 10, top:80),
-                              child: Text('>',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      height: 140,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade400,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.only(left: 15,bottom: 15),
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Rest',
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(
-                                  context,MaterialPageRoute(
-                                builder: (context) => Rest_b(),
-                              ));
-                            },
-                            child:  Container(
-                              height: 36,
-                              width: 36,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: Colors.white,
-                              ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(right: 10, top:80),
-                              child: Text('>',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-            ],
-          ),
+                    ],
+                  ),
+                );
+              },
+                itemCount: sessions_.length,
+              ),
+            ),
+          ],
         ),
-
       ),
     );
   }

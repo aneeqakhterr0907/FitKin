@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
-
+import '../home_screens/global_vars.dart';
 import 'homepage.dart';
 import 'login_page.dart';
 
-class screen1_a extends StatelessWidget {
+
+class screen1_a extends StatefulWidget {
   const screen1_a({super.key});
 
+  @override
+  State<screen1_a> createState() => _screen1_aState();
+}
+
+class _screen1_aState extends State<screen1_a> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.white54,
+        color: Theme.of(context).canvasColor,
         alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
@@ -27,6 +33,11 @@ class screen1_a extends StatelessWidget {
             ),
             SizedBox(height: 60,),
             TextField(
+              onChanged: (value){
+                setState(() {
+                  name=value;
+                });
+              },
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
                 labelText: 'Name',
@@ -102,7 +113,7 @@ class screen1_a extends StatelessWidget {
                     MaterialPageRoute(builder: (context)=> screen1(),
                     ));
               },
-              child:  Text('Login',
+              child:  Text('Already A User? Login',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.lightBlue,
@@ -118,7 +129,7 @@ class screen1_a extends StatelessWidget {
                   builder: (context) => screen2(),
                 ));
               },
-              child: Text('Signup'),
+              child: Text('Continue'),
             ),
           ],
         ),

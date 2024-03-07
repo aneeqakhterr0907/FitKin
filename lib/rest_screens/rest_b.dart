@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import '../home_screens/global_vars.dart';
 import '../main_screens/homepage.dart';
 
 
-class Rest_b extends StatelessWidget {
+class Rest_b extends StatefulWidget {
   const Rest_b({super.key});
 
+  @override
+  State<Rest_b> createState() => _Rest_bState();
+}
+
+class _Rest_bState extends State<Rest_b> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +24,7 @@ class Rest_b extends StatelessWidget {
               ));
             },
             child:  Icon(
-              Icons.home_outlined,
+              Icons.home,
               color: Colors.black,
             ),
           ),
@@ -26,62 +32,77 @@ class Rest_b extends StatelessWidget {
         elevation: 0,
       ),
       body: Container(
-        color: Colors.white54,
         height: double.infinity,
         width: double.infinity,
-        padding: EdgeInsets.only(left: 20, right: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Rest',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
+        color: Theme.of(context).canvasColor,
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:10),
+              child: Text('Rest',
+                style:
+                TextStyle(fontSize:28,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Text('Recovery Phase',
+              style:
+              TextStyle(fontSize:18,
                 color: Colors.black,
+                fontWeight: FontWeight.w500,
               ),
+            ),
+            SizedBox(height: 90,),
+            Expanded(
+              child: ListView.builder(itemBuilder: (context,index){
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 120,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      margin: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.only(left: 15, bottom: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(rest_b_ex[index],
+                            style: Theme.of(context).textTheme.displayLarge,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      color: Theme.of(context).cardColor,
+                      elevation: 10,
+                      shadowColor: Theme.of(context).cardColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          rest_b_reps[index],
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 40,)
+                  ],
+                );
+              },
+                itemCount: rest_b_ex.length,
               ),
-              SizedBox(height: 90,),
-              Container(
-                height: 120,
-                width: double.infinity,
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(left: 15,right: 15),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text('Rest',
-                style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
-              SizedBox(height: 10,),
-              Card(
-                color: Theme.of(context).cardColor,
-                elevation: 8,
-                shadowColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text('Adequate Rest Is Crucial, Consider Incorporating Active Recovery Or Lower-Intensity Activities On Rest Days',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10,),
-              Card(
-                color: Theme.of(context).cardColor,
-                elevation: 8,
-                shadowColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text('7-8 Hours Of Sleep',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

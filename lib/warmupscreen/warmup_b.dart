@@ -1,10 +1,16 @@
+import 'package:fitnessapp/home_screens/global_vars.dart';
 import 'package:fitnessapp/main_screens/homepage.dart';
 import 'package:flutter/material.dart';
 
 
-class Warmup_b extends StatelessWidget {
+class Warmup_b extends StatefulWidget {
   const Warmup_b({super.key});
 
+  @override
+  State<Warmup_b> createState() => _Warmup_bState();
+}
+
+class _Warmup_bState extends State<Warmup_b> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +24,7 @@ class Warmup_b extends StatelessWidget {
               ));
             },
             child:  Icon(
-              Icons.home_outlined,
+              Icons.home,
               color: Colors.black,
             ),
           ),
@@ -28,109 +34,74 @@ class Warmup_b extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.white54,
+        color: Theme.of(context).canvasColor,
         padding: const EdgeInsets.only(left: 20, right: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Warmup',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:10),
+              child: Text('Warm-Up',
                 style:
                 TextStyle(fontSize:28,
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 4),
-              Text('Pre-activity preparation to boost performance',
-                style:
-                TextStyle(fontSize:18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
+            ),
+            SizedBox(height: 4),
+            Text('Pre-Workout Activity To Boost Perfomance!',
+              style:
+              TextStyle(fontSize:18,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
               ),
-              SizedBox(height: 90,),
-              Container(
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.green.shade400,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: const EdgeInsets.only(left: 15,bottom: 15),
-                alignment: Alignment.center,
-                child: Text('Jumping Jacks',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
+            ),
+            SizedBox(height: 90,),
+            Expanded(
+              child: ListView.builder(itemBuilder: (context,index){
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 120,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      margin: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.only(left: 15, bottom: 15),
+                      child: Row(
+                        children: [
+                          Text(warmup_b_ex[index],
+                            style: Theme.of(context).textTheme.displayLarge,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      color: Theme.of(context).cardColor,
+                      elevation: 10,
+                      shadowColor: Theme.of(context).cardColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          warmup_b_reps[index],
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 40,)
+                  ],
+                );
+              },
+                itemCount: warmup_b_ex.length,
               ),
-              SizedBox(height: 10,),
-              Card(
-                color: Theme.of(context).cardColor,
-                elevation: 8,
-                shadowColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text('Do Jumping Jacks For 2 Minutes',
-                  style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ),
-              ),
-              SizedBox(height: 50,),
-              Container(
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.green.shade400,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: const EdgeInsets.only(left: 15,bottom: 15),
-                alignment: Alignment.center,
-                child: Text('Arm Circles',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
-              SizedBox(height: 10,),
-              Card(
-                color: Theme.of(context).cardColor,
-                elevation: 8,
-                shadowColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text('Do Arm Circles For 1 Minutes  '
-                      '(30 Seconds Each Direction)',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ),
-              ),
-              SizedBox(height: 50,),
-              Container(
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.green.shade400,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: const EdgeInsets.only(left: 15,bottom: 15),
-                alignment: Alignment.center,
-                child: Text('High Knees',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
-              SizedBox(height: 10,),
-              Card(
-                color: Theme.of(context).cardColor,
-                elevation: 8,
-                shadowColor: Colors.grey,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text('Do High Knees For 1 Minute',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

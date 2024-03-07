@@ -2,18 +2,24 @@ import 'package:fitnessapp/main_screens/homepage.dart';
 import 'package:fitnessapp/main_screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
+import '../home_screens/global_vars.dart';
 
-class screen1 extends StatelessWidget {
+
+class screen1 extends StatefulWidget {
   const screen1({super.key});
 
+  @override
+  State<screen1> createState() => _screen1State();
+}
 
+class _screen1State extends State<screen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-       color: Colors.white54,
+       color: Theme.of(context).canvasColor,
         alignment: Alignment.center,
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
@@ -28,6 +34,11 @@ class screen1 extends StatelessWidget {
               ),
              SizedBox(height: 60,),
               TextField(
+                onChanged: (value){
+                  setState(() {
+                    name=value;
+                  });
+                },
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   labelText: 'Name',
@@ -103,7 +114,7 @@ class screen1 extends StatelessWidget {
                      MaterialPageRoute(builder: (context)=> screen1_a(),
                      ));
                },
-               child:  Text('Sign Up',
+               child:  Text('New Here? Sign Up',
                  style: TextStyle(
                    fontWeight: FontWeight.w600,
                    color: Colors.lightBlue,
@@ -119,7 +130,7 @@ class screen1 extends StatelessWidget {
                       builder: (context) => screen2(),
                     ));
                   },
-                  child: Text('Login'),
+                  child: Text('Continue'),
                 ),
             ],
           ),
